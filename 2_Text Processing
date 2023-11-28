@@ -1,0 +1,1165 @@
+What is NLP?
+NLP stands for Natural Language Processing, which is a part of Computer Science, Human language, and Artificial Intelligence. It is the technology that is used by machines to understand, analyse, manipulate, and interpret human's languages. It helps developers to organize knowledge for performing tasks such as translation, automatic summarization, Named Entity Recognition (NER), speech recognition, relationship extraction, and topic segmentation.
+
+Advantages of NLP
+o	NLP helps users to ask questions about any subject and get a direct response within seconds.
+o	NLP offers exact answers to the question means it does not offer unnecessary and unwanted information.
+o	NLP helps computers to communicate with humans in their languages.
+o	It is very time efficient.
+o	Most of the companies use NLP to improve the efficiency of documentation processes, accuracy of documentation, and identify the information from large databases.
+Disadvantages of NLP
+A list of disadvantages of NLP is given below:
+o	NLP may not show context.
+o	NLP is unpredictable
+o	NLP may require more keystrokes.
+o	NLP is unable to adapt to the new domain, and it has a limited function that's why NLP is built for a single and specific task only.
+Components of NLP
+There are the following two components of NLP -
+1. Natural Language Understanding (NLU)
+Natural Language Understanding (NLU) helps the machine to understand and analyse human language by extracting the metadata from content such as concepts, entities, keywords, emotion, relations, and semantic roles.
+NLU mainly used in Business applications to understand the customer's problem in both spoken and written language.
+NLU involves the following tasks -
+o	It is used to map the given input into useful representation.
+o	It is used to analyze different aspects of the language.
+2. Natural Language Generation (NLG)
+Natural Language Generation (NLG) acts as a translator that converts the computerized data into natural language representation. It mainly involves Text planning, Sentence planning, and Text Realization
+Note: The NLU is difficult than NLG.
+Difference between NLU and NLG
+NLU	NLG
+NLU is the process of reading and interpreting language.	NLG is the process of writing or generating language.
+It produces non-linguistic outputs from natural language inputs.	It produces constructing natural language outputs from non-linguistic inputs.
+________________________________________
+Applications of NLP
+1. Question Answering
+Question Answering focuses on building systems that automatically answer the questions asked by humans in a natural language.
+
+2. Spam Detection
+Spam detection is used to detect unwanted e-mails getting to a user's inbox.
+
+3. Sentiment Analysis
+Sentiment Analysis is also known as opinion mining. It is used on the web to analyse the attitude, behaviour, and emotional state of the sender. This application is implemented through a combination of NLP (Natural Language Processing) and statistics by assigning the values to the text (positive, negative, or natural), identify the mood of the context (happy, sad, angry, etc.)
+
+4. Machine Translation
+Machine translation is used to translate text or speech from one natural language to another natural language.
+
+Example: Google Translator
+5. Spelling correction
+Microsoft Corporation provides word processor software like MS-word, PowerPoint for the spelling correction.
+
+6. Speech Recognition
+Speech recognition is used for converting spoken words into text. It is used in applications, such as mobile, home automation, video recovery, dictating to Microsoft Word, voice biometrics, voice user interface, and so on.
+7. Chatbot
+Implementing the Chatbot is one of the important applications of NLP. It is used by many companies to provide the customer's chat services.
+
+. 8. Information extraction
+Information extraction is one of the most important applications of NLP. It is used for extracting structured information from unstructured or semi-structured machine-readable documents.
+9. Natural Language Understanding (NLU)
+It converts a large set of text into more formal representations such as first-order logic structures that are easier for the computer programs to manipulate notations of the natural language processing.
+
+
+
+
+	Tokenization
+
+Tokenization is the process of tokenizing or splitting a string, text into a list of tokens. One can think of token as parts like a word is a token in a sentence, and a sentence is a token in a paragraph.
+
+•	Text into sentences tokenization
+•	Sentences into words tokenization
+•	Sentences using regular expressions tokenization
+
+
+txt='welcome to the new year 2023'
+x=txt.split()
+print(x)
+#['welcome', 'to', 'the', 'new', 'year', '2023']
+
+
+#------------------------------------------------------------------------------
+#Removing Special Characters
+
+'''
+Special characters, as you know, are non-alphanumeric characters. These characters are most often found in comments, references, currency numbers etc. These characters add no value to text-understanding and induce noise into algorithms. For that regex package is used
+'''
+
+# imports
+import re                 # function to remove special characters
+def remove_special_characters(text):
+    # define the pattern to keep
+    pat = r'[^a-zA-z0-9.,!?/:;\"\'\s]' 
+    return re.sub(pat, '', text)
+ 
+# call function
+remove_special_characters("007 Not sure@ if this % was #fun! 558923 What do# you think** of it.? $500USD!")
+#Out[64]: '007 Not sure if this  was fun! 558923 What do you think of it.? 500USD!'
+
+
+#------------------------------------------------------------------------------
+#Removing Numbers
+
+'''
+As you saw above, the text is retained. But sometimes these might not be required. Since we are dealing with text, so the number might not add much information to text processing. So, numbers can be removed fromtext. We can use regular-expressions (regex) to get rid of numbers. This step can be combined with above one  to achieve in single step.
+'''
+
+# imports
+import re# function to remove numbers
+def remove_numbers(text):
+    # define the pattern to keep
+    pattern = r'[^a-zA-z.,!?/:;\"\'\s]' 
+    return re.sub(pattern, '', text)
+ 
+# call function
+remove_numbers("007 Not sure@ if this % was #fun! 558923 What do# you think** of it.? $500USD!")
+#' Not sure if this  was fun!  What do you think of it.? USD!'
+#Out[66]: ' Not sure if this  was fun!  What do you think of it.? USD!'
+
+
+txt='welcome: to the, new year; 2023!'
+import re
+x=re.split(r'(?:,|;|\s)\s*',txt)
+print(x)
+#['welcome:', 'to', 'the', 'new', 'year', '2023!']
+
+#------------------------------------------------------------------------------
+#Removing Punctuation
+'''
+This can be clubbed with step of removing special characters. Removing punctuation is fairly easy. It can be achieved by using string.punctuation and keeping everything which is not in this list.
+'''
+
+# imports
+import string# function to remove punctuation
+def remove_punctuation(text):
+    text = ''.join([c for c in text if c not in string.punctuation])
+    return text# call function
+remove_punctuation('Article: @First sentence of some,{important} article having lot of ~ punctuations.And another one;!')
+#Out[73]: 'Article First sentence of someimportant article having lot of  punctuationsAnd another one'
+
+
+#==============================================================================
+	Stemming
+
+# Stemming is the process of reducing inflected/derived words to their word stem, base or root form These mainly rely on chopping-off ‘s’, ‘es’, ‘ed’, ‘ing’, ‘ly’ etc from the end of the words and sometimes the conversion is not desirable. But nonetheless, stemming helps us in standardizing text.
+
+# imports
+import nltk# function for stemming
+def get_stem(text):
+    stemmer = nltk.porter.PorterStemmer()
+    text = ' '.join([stemmer.stem(word) for word in text.split()])
+    return text# call function
+get_stem("we are eating and swimming ; we have been eating and swimming ;he eats and swims ; he ate and swam ")
+#Out[75]: 'we are eat and swim ; we have been eat and swim ;he eat and swim ; he ate and swam'
+
+#------------------------------------------------------------------------------
+'''
+Though stemming and lemmatization both generate the root form 
+of inflected/desired words, but lemmatization is an advanced 
+form of stemming. Stemming might not result in actual word, 
+whereas lemmatization does conversion properly with the use of vocabulary
+'''
+
+import re
+line = 'asdf fjdk; afed, fjek,asdf, foo'
+re.split(r'(?:,|;|\s)\s*', line)
+#Out[78]: ['asdf', 'fjdk', 'afed', 'fjek', 'asdf', 'foo']
+
+#------------------------------------------------------------------------------
+pattern=r'(?:,|;|\s)\s*'
+x=re.split(pattern,txt)
+print(x)
+#['welcome:', 'to', 'the', 'new', 'year', '2023!']
+
+#------------------------------------------------------------------------------
+#matching text at the start or end of string
+filename='spam.txt'
+filename.endswith('.txt')
+#Out[83]: True
+
+#------------------------------------------------------------------------------
+area_name='6 th lane west Andheri'
+area_name.endswith('west Andheri')
+#Out[85]: True
+
+#------------------------------------------------------------------------------
+choices=('http:','ftp:')
+url='http://www.python.org'
+url.startswith(choices)
+#Out[88]: True
+
+#==============================================================================
+	Slicing a String
+
+#If S is a string, the expression S [ start : stop : step ] 
+#returns the portion of the string from index start to index stop, 
+#at a step size step.
+
+S = 'ABCDEFGHI'
+print(S[2:7])	# CDEFG
+#Note that the item at index 7 'H' is not included.
+
+#Slice with Negative Indices
+S = 'ABCDEFGHI'
+print(S[-7:-2])    #CDEFG
+#Slice with Positive & Negative Indices
+S = 'ABCDEFGHI'
+print(S[2:-5])	# CD
+
+#Specify Step of the Slicing
+#You can specify the step of the slicing using step parameter. 
+#The step parameter is optional and by default 1.
+# Return every 2nd item between position 2 to 7
+
+S = 'ABCDEFGHI'
+print(S[2:7:2])	# CEG
+
+# Returns every 2nd item between position 6 to 1 in reverse order
+S = 'ABCDEFGHI'
+print(S[6:1:-2])  # GEC
+
+#Slice at Beginning & End
+#Omitting the start index starts the slice from the index 0.
+# Meaning, S[:stop] is equivalent to S[0:stop]
+
+#------------------------------------------------------------------------------
+# Slice first three characters from the string
+S = 'ABCDEFGHI'
+print(S[:3])    # ABC
+
+#Whereas, omitting the stop index extends the slice 
+#to the end of the string. Meaning, S[start:] is equivalent to 
+#S[start:len(S)]
+
+#------------------------------------------------------------------------------
+# Slice last three characters from the string
+S = 'ABCDEFGHI'
+print(S[6:]) #GHI
+
+#------------------------------------------------------------------------------
+#Reverse a String
+#You can reverse a string by omitting both start and stop indices 
+#and specifying a step as -1.
+S = 'ABCDEFGHI'
+print(S[::-1])    # IHGFEDCBA
+
+#------------------------------------------------------------------------------
+#similar operations can be done with slices
+filename='spam.txt'
+filename[-4:]=='.txt'
+#Out[104]: True
+
+#------------------------------------------------------------------------------
+url = 'http://www.python.org'
+url[:5] == 'http:' or url[:6] == 'https:' or url[:4] == 'ftp:'
+#Out[106]: True
+
+#==============================================================================
+fnmatch – Unix filename pattern matching in Python
+
+This module is used for matching Unix shell-style wildcards. fnmatch() compares a single file name against a pattern and returns TRUE if they match else returns FALSE.
+The comparison is case-sensitive when the operating system uses a case-sensitive file system.
+The special characters and their functions used in shell-style wildcards are :
+•	‘*’ – matches everything
+•	‘?’ – matches any single character
+•	‘[seq]’ – matches any character in seq
+•	‘[!seq]’ – matches any character not in seq
+The meta-characters should be wrapped in brackets for a literal match. For example, ‘[?]’ matches the character ‘?’.
+
+fnmatch.fnmatch(filename, pattern): This function tests whether the given filename string matches the pattern string and returns a boolean value. If the operating system is case-insensitive, then both parameters will be normalized to all lower-case or upper-case before the comparison is performed.
+Example: Script to search all files starting with ‘fnmatch’ and ending in ‘.py’
+
+# Python program to illustrate
+# fnmatch.fnmatch(filename, pattern)
+import fnmatch
+import os
+
+pattern = 'fnmatch_*.py'
+print ('Pattern :', pattern )
+print()
+
+files = os.listdir('.')
+for name in files:
+	print ('Filename: %-25s %s' % (name, fnmatch.fnmatch(name, pattern))
+
+
+fnmatch.fnmatchcase(filename, pattern): This function performs the case sensitive comparison and tests whether the given filename string matches the pattern string and returns a boolean value.
+Example: Script for a case-sensitive comparison, regardless of the filesystem and operating system settings.
+
+fnmatch.filter(names, pattern): This function returns the subset of the list of names passed in the function that match the given pattern.
+
+Example: Filter files by more than one file extension.
+
+# Python program to illustrate
+# fnmatch.filter(names, pattern)
+import fnmatch
+import os
+
+pattern = 'fnmatch_*.py'
+print ('Pattern :', pattern )
+
+files = os.listdir('.')
+print ('Files :', files)
+
+print ('Matches :', fnmatch.filter(files, pattern))
+
+fnmatch.translate(pattern): This function returns the shell-style pattern converted to a regular expression for using with re.match() (re.match() will only match at the beginning of the string and not at the beginning of each line).
+
+# Python program to illustrate
+# fnmatch.translate(pattern)
+import fnmatch, re
+
+regex = fnmatch.translate('*.txt')
+reobj = re.compile(regex)
+
+print(regex)
+print(reobj.match('foobar.txt'))
+
+
+# Python program to illustrate
+# fnmatch.fnmatchcase(filename, pattern)
+import fnmatch
+import os
+
+pattern = 'FNMATCH_*.PY'
+print ('Pattern :', pattern)
+print()
+
+files = os.listdir('.')
+
+for name in files:
+	(print 'Filename: %-25s %s' % (name, fnmatch.fnmatchcase(name, pattern)))
+
+
+
+names = ['Dat1.csv', 'Dat2.csv', 'config.ini', 'foo.py']
+[name for name in names if fnmatch(name, 'Dat*.csv')]
+#Out[109]: ['Dat1.csv', 'Dat2.csv']
+
+#------------------------------------------------------------------------------
+from fnmatch import fnmatch,fnmatchcase
+names = ['Andheri East', 'Parle East','Dadar West']
+[name for name in names if fnmatch(name, '* East')]
+#Out[110]: ['Andheri East', 'Parle East']
+
+#------------------------------------------------------------------------------
+addresses = [
+'5412 N CLARK ST',
+'1060 W ADDISON ST',
+'1039 W GRANVILLE AVE',
+'2122 N CLARK ST',
+'4802 N BROADWAY',
+]
+#You could write list comprehensions like this:
+from fnmatch import fnmatchcase
+[addr for addr in addresses if fnmatchcase(addr, '* ST')]
+#Out[113]: ['5412 N CLARK ST', '1060 W ADDISON ST', '2122 N CLARK ST']
+
+#------------------------------------------------------------------------------
+text = 'yeah, but no, but yeah, but no, but yeah'
+ # Exact match
+text == 'yeah'
+#Out[116]: False
+
+# Match at start or end
+text.startswith('yeah')
+#Out[117]: True
+
+text.endswith('no')
+#Out[118]: False
+
+# Search for the location of the first occurrence
+text.find('no')
+#Out[119]: 10
+
+#------------------------------------------------------------------------------
+text1 = '11/27/2012'
+text2 = 'Nov 27, 2012'
+
+# Simple matching: \d+ means match one or more digits
+import re
+if re.match(r'\d+/\d+/\d+', text1):
+    print('yes')
+else:
+    print('no')
+#yes
+
+if re.match(r'\d+/\d+/\d+', text2):
+    print('yes')
+else:
+    print('no')
+#no
+
+#------------------------------------------------------------------------------
+datepat = re.compile(r'(\d+)/(\d+)/(\d+)')
+if re.match(datepat, text1):
+    print('yes')
+else:
+    print('no')
+ #yes   
+ 
+if re.match(datepat, text2):
+    print('yes')
+else:
+    print('no')
+ #no
+    
+#------------------------------------------------------------------------------
+#Searching and replacing text
+text = 'yeah, but no, but yeah, but no, but yeah'
+text.replace('yeah', 'yep')
+#Out[126]: 'yep, but no, but yep, but no, but yep'
+
+#------------------------------------------------------------------------------
+#if you have dates in format 11/27/2012 want to convert 2012-11-27
+text = 'Today is 11/27/2012. PyCon starts 3/13/2013.'
+import re
+re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', text)
+#Out[129]: 'Today is 2012-11-27. PyCon starts 2013-3-13.'
+#\3 3 rd group,\1 st group
+
+#------------------------------------------------------------------------------
+#if you want to know how many substitutions are 
+#made in text then
+#you can use subn() method
+newtext, n = datepat.subn(r'\3-\1-\2', text)
+newtext  #Out[131]: 'Today is 2012-11-27. PyCon starts 2013-3-13.'
+n        #Out[132]: 2
+
+#------------------------------------------------------------------------------
+text = 'UPPER PYTHON, lower python, Mixed Python'
+re.findall('python', text, flags=re.IGNORECASE)
+#Out[134]: ['PYTHON', 'python', 'Python']
+
+#to substitute
+re.sub('python', 'snake', text, flags=re.IGNORECASE)
+#Out[136]: 'UPPER snake, lower snake, Mixed snake'
+
+#------------------------------------------------------------------------------
+#The last example reveals a limitation that replacing text won’t match the case of the matched text. If you need to fix this, you might have to use a support function, as in the
+following:
+import re
+def matchcase(word):
+     def replace(m):
+        text = m.group()
+        if text.isupper():
+           return word.upper()
+        elif text.islower():
+             return word.lower()
+        elif text[0].isupper():
+             return word.capitalize()
+        else:
+             return word
+     return replace
+text3=re.sub('python', matchcase('snake'), text, flags=re.IGNORECASE)
+text3
+#Out[140]: 'UPPER SNAKE, lower snake, Mixed Snake'
+
+#------------------------------------------------------------------------------
+#You’re trying to match a text pattern using regular expressions, but it is identifying the longest possible matches of a pattern. Instead, you would like to change it to find the shortest possible match. This problem often arises in patterns that try to match text enclosed inside a pair of starting and ending delimiters (e.g., a quoted string). 
+
+#To illustrate, consider this example:
+str_pat = re.compile(r'\"(.*)\"')
+text1 = 'Computer says "no."'
+str_pat.findall(text1)
+#Out[143]: ['no.']
+
+#However if we have text as below
+text2 = 'Computer says "no." Phone says "yes."'
+str_pat.findall(text2)
+#Out[145]: ['no." Phone says "yes.']
+
+#In this example, the pattern r'\"(.*)\"'  is attempting to match text enclosed inside quotes. However, the * operator in a regular expression is greedy, so matching is based on finding the longest possible match
+
+str_pat = re.compile(r'\"(.*?)\"')
+str_pat.findall(text2)
+#Out[147]: ['no.', 'yes.']
+
+#------------------------------------------------------------------------------
+comment = re.compile(r'/\*(.*?)\*/')
+text1 = '/* this is a comment */'
+comment.findall(text1)
+#Out[150]: [' this is a comment ']
+
+text2 = '''/* this is a
+            multiline comment */
+ '''
+comment.findall(text2)
+#Out[152]: []
+
+#To fix the problem, you can add support for newlines.
+
+# For example:
+comment = re.compile(r'/\*((?:.|\n)*?)\*/')
+#comment = re.compile(r'/\*((?:.|\n)*?)\*/')
+
+#In this pattern (?:.|\n) specifies a capture group i.e.it defines the group of purpose of matching but that group is not captured seperately
+
+comment.findall(text2)
+#Out[154]: [' this is a\n            multiline comment ']
+
+#There is another option which addresses this problem The re.compile() function accepts a flag, re.DOTALL,
+which is useful here. It makes the . in a regular expression match all characters, including newlines. For example:
+
+comment = re.compile(r'/\*(.*?)\*/', re.DOTALL)
+comment.findall(text2)
+#Out[156]: [' this is a\n            multiline comment ']
+
+#==============================================================================
+#Normalizing Unicode text to standard represenation
+
+#Python's string type uses the Unicode Standard for representing characters, which lets Python programs work with all these different possible characters. Unicode (https://www.unicode.org/) is a specification that aims to list every character used by human languages and give each character its own unique code. We can transform Unicode strings into normal strings using the unicode. 
+
+normalize() function from the unicodedata module. The module uses the same conventions in the Unicode characters database. The 'type' parameter can take up 4 different values:  “NFC”,”NFKC”,”NFD” and “NFKD”. a Unicode string is a sequence of code points, which are numbers from 0 through 0x10FFFF (1,114,111 decimal). This sequence of code points needs to be represented in memory as a set of code units, and code units are then mapped to 8-bit bytes.
+
+#You’re working with Unicode strings, but need to make sure that all of the strings have the same underlying representation.
+
+s1 = 'Spicy Jalape\u00f1o'
+s2 = 'Spicy Jalapen\u0303o'
+print(s1)
+print(s2)
+s1==s2
+#Out[161]: False
+
+import unicodedata
+t1 = unicodedata.normalize('NFC', s1) #Normalization form of canonical composition
+t2 = unicodedata.normalize('NFC', s2)
+t1 == t2
+#Out[162]: True
+
+print(ascii(t1))
+#'Spicy Jalape\xf1o'
+
+t3 = unicodedata.normalize('NFD', s1)
+t4 = unicodedata.normalize('NFD', s2)
+t3 == t4
+#Out[164]: True
+
+print(ascii(t3))
+#'Spicy Jalapen\u0303o'
+
+#==============================================================================
+	Normalization
+
+In response to this requirement, the Unicode Consortium has defined a process called"normalization," which produces one binary representation for any of the equivalent binary representations of a character. Once normalized, two strings are equivalent if and only if they have identical binary representations Normalization is an important part of any code that needs to ensure that it processes Unicode text in a sane and consistent way. 
+This is especially true when processing strings received as part of user input where you have little control of the encoding. Normalization can also be an important part of sanitizing and filtering text.
+
+t1 = unicodedata.normalize('NFD', s1)
+''.join(c for c in t1 if not unicodedata.combining(c))
+#Out[167]: 'Spicy Jalapeno'
+
+#------------------------------------------------------------------------------
+#Working with Unicode Characters in Regular #Expressions You are using regular expressions to process text, but are concerned about the handling of Unicode characters.
+
+import re
+num = re.compile('\d+')
+# ASCII digits
+num.match('123')
+#Out[171]: <re.Match object; span=(0, 3), match='123'>
+
+#it’s also important to be aware of special cases. For example,
+#consider the behavior of caseinsensitive
+
+#matching combined with case folding:
+pat = re.compile('stra\u00dfe', re.IGNORECASE)
+s = 'straße'
+pat.match(s) # Matches
+#Out[174]: <re.Match object; span=(0, 6), match='straße'>
+
+pat.match(s.upper()) # Doesn't match
+s.upper() # Case folds
+#Out[176]: 'STRASSE'
+
+#==============================================================================
+
+
+#Stripping Unwanted Characters from Strings
+
+#You want to strip unwanted characters, such as whitespace, from the beginning, end, or middle of a text string.
+#The strip() method can be used to strip characters from the beginning or end of a string. lstrip() and rstrip() perform stripping from the left or right side, respectively.
+#By default, these methods strip whitespace
+# Whitespace stripping
+ 
+s = '   hello world   \n'
+s.strip()
+#Out[178]: 'hello world'
+
+s = '   hello world   \n'
+s.lstrip()
+#Out[179]: 'hello world   \n'
+
+s.rstrip()
+#Out[182]: '   hello world'
+
+#------------------------------------------------------------------------------
+ # Character stripping
+t = '-----hello====='
+t.lstrip('-')
+#Out[184]: 'hello====='
+
+t.strip('-=')
+#Out[185]: 'hello'
+
+s = ' hello world       \n'
+s = s.strip()
+s
+#Out[188]: 'hello world'
+
+s.replace(' ', '')
+#Out[189]: 'helloworld'
+
+import re
+re.sub('\s+', ' ', s)
+#Out[191]: 'hello world'
+
+#------------------------------------------------------------------------------
+s = 'pýtĥöñ\fis\tawesome\r\n'
+s
+#Out[193]: 'pýtĥöñ\x0cis\tawesome\r\n'
+
+#The first step is to clean up the whitespace. To do this, make a small translation table
+#and use translate():
+remap = {
+     ord('\t') : ' ',
+     ord('\f') : ' ',
+     ord('\r') : None # Deleted
+}
+a = s.translate(remap)
+a
+#Out[196]: 'pýtĥöñ is awesome\n'
+
+#==============================================================================
+#As you can see here, whitespace characters such as \t and \f have been remapped to a single space. The carriage return \r has been deleted entirely. You can take this remapping idea a step further and build much bigger tables. 
+For example,
+#let’s remove all combining characters:
+
+•	Unicodedata:
+
+This module provides access to the Unicode Character Database (UCD) which defines character properties for all Unicode characters. The data contained in this database is compiled from the UCD version 14.0.0. The module uses the same names and symbols as defined by Unicode Standard Annex 44, “Unicode Character Database”.
+    
+import unicodedata
+import sys
+cmb_chrs = dict.fromkeys(c for c in range(sys.maxunicode) if unicodedata.combining(chr(c)))
+
+b = unicodedata.normalize('NFD', a)
+b
+#Out[202]: 'pýtĥöñ is awesome\n'
+
+b.translate(cmb_chrs)
+#Out[203]: 'python is awesome\n'
+
+#Yet another technique for cleaning up text involves I/O decoding and encoding functions.
+#The idea here is to first do some preliminary cleanup of the text, and then run it
+#through a combination of encode() or decode() operations to strip or alter it.
+
+a='pýtĥöñ is awesome\n'
+b = unicodedata.normalize('NFD', a)
+b.encode('ascii', 'ignore').decode('ascii')
+#Out[206]: 'python is awesome\n'
+
+#------------------------------------------------------------------------------
+#Aligning the text string
+text = 'Hello World'
+text.ljust(20)
+#Out[208]: 'Hello World         '
+
+text.rjust(20)
+#Out[209]: '         Hello World'
+
+text.center(20)
+#Out[210]: '    Hello World     '
+
+#------------------------------------------------------------------------------
+#All of these methods accept an optional characters &fill character as well. 
+For example:
+text.rjust(20,'=')
+#Out[211]: '=========Hello World'
+
+text.center(20,'*')
+#Out[212]: '****Hello World*****'
+
+#------------------------------------------------------------------------------
+format(text, '>20')
+#Out[213]: '         Hello World'
+
+format(text, '<20')
+#Out[214]: 'Hello World         '
+
+format(text, '^20')
+#Out[215]: '    Hello World     '
+
+#Here you can add charcters to fill the space at left,right or center as above but If you want to include a fill character other than a space, specify it before the alignment character:
+    
+format(text, '=>20s')
+#Out[216]: '=========Hello World'
+
+format(text, '*^20s')
+#Out[217]: '****Hello World*****'
+
+#These format codes can also be used in the format() method when formatting multiple values.
+#For example:
+    
+'{:>10s} {:>10s}'.format('Hello', 'World')
+#Out[218]: '     Hello      World'
+
+#One benefit of format() is that it is not specific to strings. It works with any value, making it more general purpose. For instance, you can use it with numbers:
+    
+x = 1.2345
+format(x, '>10')  #Out[220]: '    1.2345'
+x                 #Out[221]: 1.2345
+
+format(x, '^10.2f')
+#Out[222]: '   1.23   '
+
+#==============================================================================
+parts = ['Is', 'Chicago', 'Not', 'Chicago?']
+' '.join(parts)
+#Out[224]: 'Is Chicago Not Chicago?'
+
+','.join(parts)
+#Out[225]: 'Is,Chicago,Not,Chicago?'
+
+''.join(parts)
+#Out[226]: 'IsChicagoNotChicago?'
+
+#------------------------------------------------------------------------------
+#if you join very few strings then you can use + operator
+a = 'Is Chicago'
+b = 'Not Chicago?'
+a + ' ' + b
+#Out[229]: 'Is Chicago Not Chicago?'
+
+#------------------------------------------------------------------------------
+print('{} {}'.format(a,b))
+#Is Chicago Not Chicago?
+
+print(a + ' ' + b)
+#Is Chicago Not Chicago?
+
+#------------------------------------------------------------------------------
+a='Hello' 'world'
+a
+#Out[233]: 'Helloworld'
+
+#------------------------------------------------------------------------------
+a='Hello'' ' 'world'
+a
+#Out[235]: 'Hello world'
+
+#------------------------------------------------------------------------------
+#Interpolating Variables in Strings
+#You want to create a string in which embedded variable names are substituted with a string representation of a variable’s value.
+
+s = '{name} has {n} messages.'
+s.format(name='Guido', n=37)
+#Out[237]: 'Guido has 37 messages.'
+
+#------------------------------------------------------------------------------
+s = '{name} has {n} messages.'
+name = 'Guido'
+n = 37
+s.format_map(vars())
+#Out[241]: 'Guido has 37 messages.'
+
+#------------------------------------------------------------------------------
+	textwrap module:
+  				The textwrap module provides some convenience functions, as well as TextWrapper, the class that does all the work. If you’re just wrapping or filling one or two text strings, the convenience functions should be good enough; otherwise, you should use an instance of TextWrapper for efficiency.
+
+s = "Look into my eyes, look into my eyes, the eyes, the eyes, \
+the eyes, not around the eyes, don't look around the eyes, \
+look into my eyes, you're under."
+#Here’s how you can use the textwrap module to reformat it in various ways:
+    
+import textwrap
+print(textwrap.fill(s, 70))
+#O/P:
+'''
+Look into my eyes, look into my eyes, the eyes, the eyes, the eyes,
+not around the eyes, don't look around the eyes, look into my eyes,
+you're under.
+'''
+
+print(textwrap.fill(s, 40))
+#o/p:
+'''
+Look into my eyes, look into my eyes,
+the eyes, the eyes, the eyes, not around
+the eyes, don't look around the eyes,
+look into my eyes, you're under.
+'''
+
+print(textwrap.fill(s, 40, initial_indent='  '))
+#o/p:
+'''
+   Look into my eyes, look into my eyes,
+the eyes, the eyes, the eyes, not around
+the eyes, don't look around the eyes,
+look into my eyes, you're under.
+'''
+
+print(textwrap.fill(s, 40, subsequent_indent=' '))
+#o/p:
+'''
+Look into my eyes, look into my eyes,
+ the eyes, the eyes, the eyes, not
+ around the eyes, don't look around the
+ eyes, look into my eyes, you're under.
+'''
+
+#==============================================================================
+	NLTK Module :
+Natural language processing (NLP) is a field that focuses on making natural human language usable by computer programs. NLTK, or Natural Language Toolkit, is a Python package that you can use for NLP.
+A lot of the data that you could be analyzing is unstructured data and contains human-readable text. Before you can analyze that data programmatically, you first need to preprocess it. In this tutorial, you’ll take your first look at the kinds of text preprocessing tasks you can do with NLTK so that you’ll be ready to apply them in future projects. You’ll also see how to do some basic text analysis and create visualizations.
+If you’re familiar with the basics of using Python and would like to get your feet wet with some NLP, then you’ve come to the right place.
+
+#The sentence tokenization,seperating sentences from doc
+
+import nltk
+sentence_data = "The First sentence is about Python. The Second: about Django. You can learn Python,Django and Data Ananlysis here. "
+nltk_tokens = nltk.sent_tokenize(sentence_data)
+print (nltk_tokens)
+#o/p:['The First sentence is about Python.', 'The Second: about Django.', 
+'You can learn Python,Django and Data Ananlysis here.']
+    
+#------------------------------------------------------------------------------
+#Non-English Tokenization
+
+import nltk
+german_tokenizer = nltk.data.load('tokenizers/punkt/german.pickle')
+german_tokens=german_tokenizer.tokenize('Wie geht es Ihnen?  Gut, danke.')
+print(german_tokens)
+#o/p:['Wie geht es Ihnen?', 'Gut, danke.']
+
+#------------------------------------------------------------------------------
+#word tokenization
+import nltk
+word_data = "It originated from the idea that there are readers who prefer learning new skills from the comforts of their drawing rooms"
+nltk_tokens = nltk.word_tokenize(word_data)
+print (nltk_tokens)
+#o/p:['It', 'originated', 'from', 'the', 'idea', 'that', 'there', 'are', 'readers', 
+'who', 'prefer', 'learning', 'new', 'skills', 'from', 'the', 'comforts', 
+'of', 'their', 'drawing', 'rooms']
+    
+#------------------------------------------------------------------------------
+import nltk
+nltk.download('stopwords')
+#It will download a file with English stopwords.
+#Verifying the Stopwords
+
+from nltk.corpus import stopwords
+stopwords.words('english')
+#The various language other than English which has these stopwords are as below.
+
+from nltk.corpus import stopwords
+print (stopwords.fileids())
+#o/p:['arabic', 'azerbaijani', 'basque', 'bengali', 'catalan', 'chinese', 'danish',
+ 'dutch', 'english', 'finnish', 'french', 'german', 'greek', 'hebrew', 'hinglish', 
+ 'hungarian', 'indonesian', 'italian', 'kazakh', 'nepali', 'norwegian', 'portuguese', 
+ 'romanian', 'russian', 'slovene', 'spanish', 'swedish', 'tajik', 'turkish']
+    
+#------------------------------------------------------------------------------
+from nltk.corpus import stopwords
+en_stops = set(stopwords.words('english'))
+
+all_words = ['There', 'is', 'a', 'tree','near','the','river']
+for word in all_words: 
+    if word not in en_stops:
+        print(word)
+#o/p:
+There
+tree
+near
+river
+
+#------------------------------------------------------------------------------
+import nltk
+nltk.download('omw-1.4')
+from nltk.corpus import wordnet
+
+synonyms = []
+
+for syn in wordnet.synsets("Soil"):
+    for lm in syn.lemmas():
+             synonyms.append(lm.name())
+print (set(synonyms))
+#o/p:
+    {'ground', 'grime', 'filth', 'territory', 'grease', 'dirty', 'begrime', 'colly',
+     'grunge', 'land', 'soil', 'bemire', 'dirt', 'stain'}
+    
+#------------------------------------------------------------------------------
+nltk.download('omw-1.4')
+from nltk.corpus import wordnet
+antonyms = []
+
+for syn in wordnet.synsets("ahead"):
+    for lm in syn.lemmas():
+        if lm.antonyms():
+            antonyms.append(lm.antonyms()[0].name())
+
+print(set(antonyms))
+#o/p:{'backward', 'back'}
+
+#------------------------------------------------------------------------------
+import nltk
+word_data = "The Sky is blue also the ocean is blue also Rainbow has a blue colour." 
+
+# First Word tokenization
+nltk_tokens = nltk.word_tokenize(word_data)
+
+# Applying Set
+no_order = list(set(nltk_tokens))
+
+print(no_order)
+#o/p:
+    ['the', 'is', 'has', 'a', 'colour', 'blue', 'The', 'also', 'Sky', 'ocean',
+     'Rainbow', '.']
+    
+#------------------------------------------------------------------------------
+import nltk
+word_data = "The Sky is blue also the ocean is blue also Rainbow has a blue colour." 
+# First Word tokenization
+nltk_tokens = nltk.word_tokenize(word_data)
+
+ordered_tokens = set()
+result = []
+for word in nltk_tokens:
+    if word not in ordered_tokens:
+        ordered_tokens.add(word)
+        result.append(word)
+     
+print (result) 
+#o/p:
+    ['The', 'Sky', 'is', 'blue', 'also', 'the', 'ocean', 'Rainbow', 'has', 'a',
+     'colour', '.']
+    
+#------------------------------------------------------------------------------
+#To extract emails form text, we can take of regular expression.
+# In the below example we take help of the regular expression package to define the pattern of an email ID and then use the findall() function to retrieve those text which match this pattern.
+
+import re
+text = "Please contact us at contact@xyz.com for further information."+\
+        " You can also give feedbacl at feedback@xyz.com"
+
+
+emails = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", text)
+print (emails)
+#o/p:['contact@xyz.com', 'feedback@xyz.com']
+
+#------------------------------------------------------------------------------
+#We can take a input file containig some URLs and process it thorugh the following program to extract the URLs. The findall() function is used to find all instances matching with the regular expression. 
+
+import re
+with open("c:/10-python/url.txt") as file:
+        for line in file:
+            urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', line)
+            print(urls)
+            
+#------------------------------------------------------------------------------
+#Capitalization strings is a regular need in any text processing system. Python achieves it by using the built-in functions in the standard library. In the below example we use the two string functions, 
+#capwords() and upper() to achieve this. 
+
+
+	String Module:
+
+Python provides a built-in module named string which provides lots of functions and properties to precess the string.
+Python string module is a built-in Python module that means you don’t need to install it by using pip. To use the string module in Python you need to import using the import keyword.
+Let’s look constants, define in the string module.
+string.ascii_letters
+This constants return the combination of ascii.lowercase and ascii.uppercase letters.
+import string
+x = string.ascii_letters
+print(x)
+#o/p:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+string.ascii_lowercase:
+string.ascii_lowercase constants return the lowercase letters.
+import string
+x = string.ascii_lowercase
+print(x)
+#o/p:abcdefghijklmnopqrstuvwxyz
+
+string.ascii_uppercase:
+string.ascii_uppercase constants return the upper case letters.
+import string
+x = string.ascii_uppercase
+print(x)
+#o/p:ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+string.digits:
+string.digits return the digits.
+import string
+x = string.digits
+print(x)
+#o/p:0123456789
+
+string.hexdigits:
+The string.hexdigits return the hexadecimal:
+import string
+x = string.hexdigits
+print(x)
+#o/p:0123456789abcdefABCDEF
+
+string.octdigits:
+The string.octdigits return the hexadecimal.
+import string
+x = string.hexdigits
+print(x)
+#o/p:0123456789abcdefABCDEF
+
+string.punctuation:
+The string.punctuation return the punctuations.
+import string
+x = string.punctuation
+print(x)
+#o/p:!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+
+string.whitespace:
+The string.whitespace return the whitespaces.
+import string
+x = string.whitespace
+print(x)
+o/p:
+    
+string.printable:
+The string.printable constants return the combination of ascii_letters, digits, punctuations and whitespace.
+import string
+x = string.printable
+print(x)
+
+#------------------------------------------------------------------------------
+import string
+text = 'Machine learning - advanced technology to learn'
+
+print (string.capwords(text))
+print (text.upper())
+#o/p:MACHINE LEARNING - ADVANCED TECHNOLOGY TO LEARN
+
+#------------------------------------------------------------------------------
+#Translation in python essentially means substituting specific letters with another letter. It can work for encryption decryption of strings.
+
+import string
+text = 'Machine learning - advanced technology to learn'
+
+transtable = text.maketrans('chd', 'abc')
+print (text.translate(transtable))
+#o/p:Maabine learning - acvanaec teabnology to learn
+
+#------------------------------------------------------------------------------
+#Using regular expressions there are two fundamental operations which appear similar but have significant differences. The re.match() checks for a match only at the beginning of the string, while re.search() checks for a match anywhere in the string.
+
+import re
+
+if  re.search("tor", "Tutorial"):
+        print ("1. search result found anywhere in the string")
+#o/p:1. search result found anywhere in the string
+
+if re.match("Tut", "Tutorial"):
+         print ("2. Match with beginning of string" )
+#o/p:2. Match with beginning of string
+
+if not re.match("tor", "Tutorial"):
+        print ("3. No match with match if not beginning" )
+#o/p:3. No match with match if not beginning
+
+#------------------------------------------------------------------------------
+import re
+
+"""We create a re.MatchObject and store it in
+   match_object variable
+   the '()' parenthesis are used to define a
+   specific group
+  """
+  
+match_object = re.match(r'(\w+)@(\w+)\.(\w+)', 'username@gmail.com')
+""" w in above pattern stands for alphabetical character
+    + is used to match a consecutive set of characters
+    satisfying a given condition
+    so w+ will match a consecutive set of alphabetical characters"""
+    
+# for entire match
+print(match_object.group())
+#o/p:username@gmail.com
+
+# also print(match_object.group(0)) can be used
+
+# for the first parenthesized subgroup
+print(match_object.group(1))
+#o/p:username
+
+# for the second parenthesized subgroup
+print(match_object.group(2))
+#o/p:gmail
+
+# for the third parenthesized subgroup
+print(match_object.group(3))
+#o/p:com
+
+# for a tuple of all matched subgroups
+print(match_object.group(1, 2, 3))
+#o/p:('username', 'gmail', 'com')
+
+#------------------------------------------------------------------------------
+
+
+
+
+
+	Random Modul: 
+                                  Python Random module is an in-built module of Python that is used to generate random numbers in Python. These are pseudo-random numbers means they are not truly random. This module can be used to perform random actions such as generating random numbers, printing random a value for a list or string, etc.
+
+import random
+
+import re
+
+def replace(t):
+    inner_word = list(t.group(2))
+    random.shuffle(inner_word)
+    return t.group(1) + "".join(inner_word) + t.group(3)
+text = "Hello, You should reach the finish line."
+print( re.sub(r"(\w)(\w+)(\w)", replace, text))
+#o/p:Hlelo, You sulohd rcaeh the fiinsh lnie.
+
+print (re.sub(r"(\w)(\w+)(\w)", replace, text))
+#o/p:Hlleo, You shluod rceah the fsniih lnie.
+
+#------------------------------------------------------------------------------
+#Replacing the complete string or a part of string is a very frequent
+# requirement in text processing. The replace() method returns a copy of the string in which the occurrences of old have been replaced with new, optionally restricting the number of replacements to max.
+
+str = "this is string example....wow!!! this is really string"
+print (str.replace("is", "was"))
+#o/p:thwas was string example....wow!!! thwas was really string
+
+#------------------------------------------------------------------------------
+#Replacement Ignoring Case
+import re
+sourceline  = re.compile("Tutor", re.IGNORECASE)
+ 
+Replacedline  = sourceline.sub("Tutor","Tutorialspoint has the best tutorials for learning.")
+print (Replacedline)
+#o/p:Tutorialspoint has the best Tutorials for learning.
+
+#------------------------------------------------------------------------------
+	SpellChecker Module:
+                                               This article discusses various ways that you can check the spellings of the words and also can correct the spelling of the respective word.
+
+
+#pip install pyspellchecker
+
+from spellchecker import SpellChecker
+
+spell = SpellChecker()
+
+# find those words that may be misspelled
+misspelled = spell.unknown(['let', 'us', 'wlak','on','the','groun'])
+
+for word in misspelled:
+    # Get the one `most likely` answer
+    print(spell.correction(word))
+#o/p:
+walk
+group
+
+# Get a list of `likely` options
+    print(spell.candidates(word))
+#o/p:
+    {'ground', 'group', 'grout', 'grown', 'groin', 'aroun', 'groon', 'groan'}
+    
+#==============================================================================
+
